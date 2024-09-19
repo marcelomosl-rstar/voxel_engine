@@ -1,0 +1,12 @@
+﻿  Camera.cpp
+  EBO.cpp
+  Shader.cpp
+  VAO.cpp
+  VBO.cpp
+  Main.cpp
+C:\dev\opengl_engine\src\OpenGL\VAO.cpp(12,63): warning C4244: 'argument': conversion from 'GLsizeiptr' to 'GLsizei', possible loss of data
+  Texture.cpp
+  Stb.cpp
+  Generating Code...
+  glad.c
+  voxel_engine.vcxproj -> C:\dev\opengl_engine\x64\Debug\voxel_engine.exe
