@@ -13,37 +13,15 @@
 #include "OpenGL/Camera.h"
 #include "Shaders/Shader.h"
 #include "Shaders/Texture.h"
+#include "Objects/Triangle.h"
 
 const unsigned int SCR_WIDTH = 1200;
 const unsigned int SCR_HEIGHT = 720;
-
-void processInput(GLFWwindow* window);
 
 bool fileExists(const std::string& filename) {
 	std::ifstream file(filename);
 	return file.good();
 }
-
-// Vertices coordinates
-GLfloat vertices[] =
-{ //     COORDINATES     /        COLORS      /   TexCoord  //
-	-0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,
-	-0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	5.0f, 0.0f,
-	 0.5f, 0.0f, -0.5f,     0.83f, 0.70f, 0.44f,	0.0f, 0.0f,
-	 0.5f, 0.0f,  0.5f,     0.83f, 0.70f, 0.44f,	5.0f, 0.0f,
-	 0.0f, 0.8f,  0.0f,     0.92f, 0.86f, 0.76f,	2.5f, 5.0f
-};
-
-// Indices for vertices order
-GLuint indices[] =
-{
-	0, 1, 2,
-	0, 2, 3,
-	0, 1, 4,
-	1, 2, 4,
-	2, 3, 4,
-	3, 0, 4
-};
 
 int main() {
 
@@ -76,8 +54,10 @@ int main() {
 	VAO vao1;
 	vao1.Bind();
 
-	VBO vbo(vertices, sizeof(vertices));
-	EBO ebo(indices, sizeof(indices));
+	Triangle triangle;
+
+	VBO vbo(triangle.vertices.data(), triangle.vertices.size() * sizeof(GLfloat));
+	EBO ebo(triangle.indices.data(), triangle.indices.size() * sizeof(GLuint));
 
 	vao1.LinkAttrib(vbo, 0, 3, GL_FLOAT, 8 * sizeof(float), (void*)0);
 	vao1.LinkAttrib(vbo, 1, 3, GL_FLOAT, 8 * sizeof(float), (void*)(3 * sizeof(float)));
@@ -87,22 +67,34 @@ int main() {
 	ebo.Unbind();
 	vbo.Unbind();
 
-
 	Texture grassBlock("src/wall.png", GL_TEXTURE_2D, GL_TEXTURE0, GL_RGBA, GL_UNSIGNED_BYTE);
 
 	grassBlock.texUnit(shaderProgram, "tex0", 0);
 
-
 	Camera camera(SCR_WIDTH, SCR_HEIGHT, glm::vec3(0.0f, 0.0f, 2.0f));
 
 	glEnable(GL_DEPTH_TEST);
-
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_FRONT);
 	glFrontFace(GL_CCW);
 
+	double prevTime = 0.0;
+	double crrntTime = 0.0;
+	double timeDiff = 0.0;
+	unsigned int counter = 0;
 
 	while (!glfwWindowShouldClose(window)) {
+
+		crrntTime = glfwGetTime();
+		timeDiff = crrntTime - prevTime;
+		counter++;
+		if (timeDiff >= 1.0 / 30.0) {
+			std::string FPS = std::to_string((1.0 / timeDiff) * counter);
+
+			std::string newTitle = "Voxel Engine - FPS " + FPS;
+
+			glfwSetWindowTitle(window, newTitle.c_str());
+		}
 
 		glClearColor(0.07f, 0.13f, 0.17f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -117,16 +109,11 @@ int main() {
 
 		vao1.Bind();
 
-
-		//processInput(window);
-
 		glfwPollEvents();
 
-		glDrawElements(GL_TRIANGLES, sizeof(indices) / sizeof(float), GL_UNSIGNED_INT, 0);
+		glDrawElements(GL_TRIANGLES, triangle.indices.size() * sizeof(GLuint) / sizeof(float), GL_UNSIGNED_INT, 0);
 
 		glfwSwapBuffers(window);
-
-
 	}
 
 	vao1.Delete();
@@ -138,16 +125,4 @@ int main() {
 	glfwDestroyWindow(window);
 	glfwTerminate();
 	return 0;
-}
-
-
-// process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
-// ---------------------------------------------------------------------------------------------------------
-void processInput(GLFWwindow* window)
-{
-	if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(window, true);
-
-	if (glfwGetKey(window, GLFW_KEY_ENTER) == GLFW_PRESS)
-		std::cout << "Enter Pressed" << std::endl;
 }

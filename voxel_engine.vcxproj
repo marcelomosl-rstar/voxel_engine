@@ -140,6 +140,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Objects\Triangle.cpp" />
     <ClCompile Include="src\OpenGL\Camera.cpp" />
     <ClCompile Include="src\OpenGL\EBO.cpp" />
     <ClCompile Include="src\Shaders\Shader.cpp" />
@@ -155,6 +156,7 @@
     <None Include="src\Shaders\Default.vert" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Objects\Triangle.h" />
     <ClInclude Include="src\OpenGL\Camera.h" />
     <ClInclude Include="src\OpenGL\EBO.h" />
     <ClInclude Include="src\Shaders\Shader.h" />
