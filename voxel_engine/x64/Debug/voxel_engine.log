@@ -1,3 +1,5 @@
 ﻿  Main.cpp
-C:\dev\opengl_engine\src\Main.cpp(124,73): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+C:\dev\opengl_engine\src\Main.cpp(117,54): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+  Shader.cpp
+  Generating Code...
   voxel_engine.vcxproj -> C:\dev\opengl_engine\x64\Debug\voxel_engine.exe
