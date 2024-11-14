@@ -2,3 +2,78 @@
 .vs/
 .vs\*
 .vs\
+# Ignore build output directories
+/build/
+/bin/
+/dist/
+/out/
+
+# Ignore Visual Studio files
+*.vcxproj
+*.vcxproj.user
+*.vcxproj.filters
+*.sln
+*.obj
+*.pdb
+*.exe
+*.ilk
+*.log
+*.ipch
+*.pch
+*.idb
+*.tlog
+*.lastbuildstate
+*.suo
+*.sdf
+*.opensdf
+*.ncb
+*.vcxproj.*
+*.vs/
+
+# Ignore CMake build files
+CMakeFiles/
+CMakeCache.txt
+Makefile
+cmake_install.cmake
+CMakeLists.txt.user
+
+# Ignore macOS-specific files
+.DS_Store
+
+# Ignore Linux-specific files
+*.swp
+
+# Ignore Windows-specific files
+Thumbs.db
+desktop.ini
+
+# Ignore libraries
+/libraries/lib/*
+/libraries/include/*
+
+# Ignore compiled files
+*.o
+*.obj
+*.dll
+*.so
+*.dylib
+*.lib
+*.a
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.temp
+*.bak
+*.old
+
+# Ignore editor-specific directories and files
+.vscode/
+.idea/
+*.code-workspace
+
+# Ignore GLM, GLFW, and other dependency files if downloaded to project
+dependencies/
+
