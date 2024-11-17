@@ -144,6 +144,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Objects\Chunk.cpp" />
     <ClCompile Include="src\Objects\Cube.cpp" />
     <ClCompile Include="src\OpenGL\Camera.cpp" />
     <ClCompile Include="src\OpenGL\EBO.cpp" />
@@ -161,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Objects\Cube.h" />
+    <ClInclude Include="src\Objects\Chunk.h" />
     <ClInclude Include="src\OpenGL\Camera.h" />
     <ClInclude Include="src\OpenGL\EBO.h" />
     <ClInclude Include="src\Shaders\Shader.h" />

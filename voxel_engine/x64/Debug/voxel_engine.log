@@ -1,3 +1,2 @@
-﻿  Main.cpp
-C:\dev\opengl_engine\src\Main.cpp(117,59): warning C4267: 'argument': conversion from 'size_t' to 'GLsizei', possible loss of data
+﻿  Cube.cpp
   voxel_engine.vcxproj -> C:\dev\opengl_engine\x64\Debug\voxel_engine.exe

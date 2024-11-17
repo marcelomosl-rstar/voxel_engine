@@ -7,10 +7,10 @@
 class Cube {
 
 public:
-    Cube();
-
     std::vector<GLfloat> vertices;
     std::vector<GLuint> indices;
+
+    Cube();
 
 private:
 };
